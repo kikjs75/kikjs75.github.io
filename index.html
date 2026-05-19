@@ -13,10 +13,14 @@
   <body class="bg-gray-100">
     <div class="flex">
       <aside
-        class="bg-gray-800 w-64 h-screen flex flex-col py-7 px-2 space-y-6"
+        id="sidebar"
+        class="bg-gray-800 w-64 h-screen flex flex-col py-7 px-2 space-y-6 z-10 inset-y-0 left-0 -translate-x-full lg:translate-x-0 absolute lg:relative transition duration-200"
       >
-        <div>
+        <div class="flex justify-between items-center px-4 mb-6">
           <h2 class="text-white text-2xl font-semibold px-4 mb-6">대시보드</h2>
+          <button id="closeSidebar" class="text-white lg:hidden">
+            <i class="fas fa-times"></i>
+          </button>
         </div>
         <nav class="flex flex-col space-y-4">
           <a
@@ -53,15 +57,23 @@
         <header
           class="bg-white border-b-4 border-indigo-600 h-16 flex justify-between items-center px-6 py-2"
         >
-          <div class="relative">
-            <span class="absolute left-0 inset-y-0 pl-3 flex items-center"
-              ><i class="fas fa-search text-gray-500"></i
-            ></span>
-            <input
-              type="text"
-              placeholder="검색"
-              class="focus:border-indigo-600 h-10 w-64 pl-10 pr-4 rounded-md"
-            />
+          <div class="flex items-center">
+            <button>
+              <i
+                id="sideBarToggle"
+                class="fas fa-bars text-gray-500 lg:hidden p-2 mr-4"
+              ></i>
+            </button>
+            <div class="relative">
+              <span class="absolute left-0 inset-y-0 pl-3 flex items-center"
+                ><i class="fas fa-search text-gray-500"></i
+              ></span>
+              <input
+                type="text"
+                placeholder="검색"
+                class="focus:border-indigo-600 h-10 w-64 pl-10 pr-4 rounded-md"
+              />
+            </div>
           </div>
           <div class="flex items-center gap-x-4">
             <button class="text-gray-600">
@@ -79,7 +91,7 @@
           <!--대시보드 영역-->
           <div class="container mx-auto px-6 py-8">
             <h3 class="text-3xl text-gray-700 font-semibold mb-5">대시보드</h3>
-            <div class="grid grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               <!--카드-->
               <div class="flex items-center bg-white rounded-md px-5 py-6">
                 <!--아이콘-->
@@ -262,5 +274,23 @@
         </main>
       </div>
     </div>
+    `
+    <script>
+      // sidebar, closeSidebar, sideBarToggle
+
+      document
+        .getElementById('sideBarToggle')
+        .addEventListener('click', function () {
+          document
+            .getElementById('sidebar')
+            .classList.toggle('-translate-x-full');
+        });
+
+      document
+        .getElementById('closeSidebar')
+        .addEventListener('click', function () {
+          document.getElementById('sidebar').classList.add('-translate-x-full');
+        });
+    </script>
   </body>
 </html>
